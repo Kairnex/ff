@@ -98,7 +98,7 @@ async def give_filter(client, message):
             return
         else:
             return await message.reply_text(f"<b>Hᴇʏ {message.from_user.mention},\n\nʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛ ɪꜱ ᴀʟʀᴇᴀᴅʏ ᴀᴠᴀɪʟᴀʙʟᴇ ✅\n\n📂 ꜰɪʟᴇꜱ ꜰᴏᴜɴᴅ : {str(total_results)}\n🔍 ꜱᴇᴀʀᴄʜ :</b> <code>{search}</code>\n\n<b>‼️ ᴛʜɪs ɪs ᴀ <u>sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ</u> sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ғɪʟᴇs ғʀᴏᴍ ʜᴇʀᴇ...\n\n📝 ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ : 👇</b>",   
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍 ᴊᴏɪɴ ᴀɴᴅ ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ 🔎", url=f"https://t.me/earaxsupport")]]))
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔍 ᴊᴏɪɴ ᴀɴᴅ ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ 🔎", url=f"https://t.me/MoviesLinkSearchBot2")]]))
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def pm_text(bot, message):
@@ -109,7 +109,7 @@ async def pm_text(bot, message):
     if user_id in ADMINS: return # ignore admins
     await message.reply_text(
          text=f"<b>ʜᴇʏ {user} 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇs ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇsᴛ ɪᴛ ɪɴ ᴏᴜʀ ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ 👇</b>",   
-         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ", url=f"https://t.me/earaxsupport")]])
+         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ", url=f"https://t.me/MoviesLinkSearchBot2")]])
     )
     await bot.send_message(
         chat_id=LOG_CHANNEL,
@@ -1233,6 +1233,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#max_btn#{settings["max_btn"]}#{str(grp_id)}')
                 ],
                 [
+                    InlineKeyboardButton('ꜱʜᴏʀᴛʟɪɴᴋ',
+                                         callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
+                    InlineKeyboardButton('ᴇɴᴀʙʟᴇ' if settings["is_shortlink"] else 'ᴅɪꜱᴀʙʟᴇ',
+                                         callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
+                ],
+                [
                     InlineKeyboardButton('⇋ ᴄʟᴏꜱᴇ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ ⇋', 
                                          callback_data='close_data'
                                          )
@@ -1318,7 +1324,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('10' if settings["max_btn"] else f'{MAX_B_TN}',
                                          callback_data=f'setgs#max_btn#{settings["max_btn"]}#{str(grp_id)}')
                 ],
-                
+                [
+                    InlineKeyboardButton('ꜱʜᴏʀᴛʟɪɴᴋ',
+                                         callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
+                    InlineKeyboardButton('ᴇɴᴀʙʟᴇ' if settings["is_shortlink"] else 'ᴅɪꜱᴀʙʟᴇ',
+                                         callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
+                ],
                 [
                     InlineKeyboardButton('⇋ ᴄʟᴏꜱᴇ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ ⇋', 
                                          callback_data='close_data'
@@ -1386,7 +1397,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                  InlineKeyboardButton('ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ', url=link.invite_link),
                  InlineKeyboardButton("ᴠɪᴇᴡ ꜱᴛᴀᴛᴜꜱ", url=f"{query.message.link}")
                ],[
-                 InlineKeyboardButton("🔍 ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ 🔎", url="https://t.me/earaxsupport")
+                 InlineKeyboardButton("🔍 ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ 🔎", url="https://t.me/MoviesLinkSearchBot2")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -1411,7 +1422,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                  InlineKeyboardButton('ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ', url=link.invite_link),
                  InlineKeyboardButton("ᴠɪᴇᴡ ꜱᴛᴀᴛᴜꜱ", url=f"{query.message.link}")
                ],[
-                 InlineKeyboardButton("🔍 ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ 🔎", url="https://t.me/earaxsupport")
+                 InlineKeyboardButton("🔍 ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ 🔎", url="https://t.me/MoviesLinkSearchBot2")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -1471,7 +1482,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton("🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ", url=lazy_download),
                     InlineKeyboardButton("ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿", url=lazy_stream)
                 ],[
-                    InlineKeyboardButton('Update Channel', url='https://t.me/earaxsupport')
+                    InlineKeyboardButton('📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌', url='https://t.me/HP_MOVIES_WORLD')
                 ]]
             else:
                 await query.answer("🚸 ɴᴏᴛᴇ :\nᴀᴅ-ꜰʀᴇᴇ ꜱᴇʀᴠɪᴄᴇ ɪꜱ ᴏɴʟʏ ꜰᴏʀ ᴘʀᴇᴍɪᴜᴍ ᴜꜱᴇʀꜱ.\n\nᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ ᴄʜᴇᴄᴋ ᴘʟᴀɴꜱ.", show_alert=True)
@@ -1516,49 +1527,262 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "sinfo":
         await query.answer(text=script.SINFO, show_alert=True)
 
-if query.data == "start":
-    buttons = [[
-        InlineKeyboardButton('Add To Group', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
-    ], [
-        InlineKeyboardButton('Updates', callback_data='channels')
-    ], [
-        InlineKeyboardButton('Commands', callback_data='help')
-    ], [
-        InlineKeyboardButton('• ᴀʙᴏᴜᴛ •', callback_data='about')
-    ]]
+    elif query.data == "start":
+        buttons = [[
+                    InlineKeyboardButton('☆ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ☆', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
+                ],[
+                    InlineKeyboardButton('💸 ᴇᴀʀɴ ᴍᴏɴᴇʏ 💸', callback_data="shortlink_info"),
+                    InlineKeyboardButton('• ᴜᴘᴅᴀᴛᴇꜱ •', callback_data='channels')
+                ],[
+                    InlineKeyboardButton('• ᴄᴏᴍᴍᴀɴᴅꜱ •', callback_data='help'),
+                    InlineKeyboardButton('• ᴀʙᴏᴜᴛ •', callback_data='about')
+                ],[
+                    InlineKeyboardButton('✨ ʙᴜʏ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ : ʀᴇᴍᴏᴠᴇ ᴀᴅꜱ ✨', callback_data="premium_info")
+                  ]]
+        
+        reply_markup = InlineKeyboardMarkup(buttons)
+        current_time = datetime.now(pytz.timezone(TIMEZONE))
+        curr_time = current_time.hour        
+        if curr_time < 12:
+            gtxt = "ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ 👋" 
+        elif curr_time < 17:
+            gtxt = "ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ 👋" 
+        elif curr_time < 21:
+            gtxt = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 👋"
+        else:
+            gtxt = "ɢᴏᴏᴅ ɴɪɢʜᴛ 👋"
+        await query.message.edit_text(
+            text=script.START_TXT.format(query.from_user.mention, gtxt, temp.U_NAME, temp.B_NAME),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+        await query.answer(MSG_ALRT)
 
-    reply_markup = InlineKeyboardMarkup(buttons)
+    elif query.data == "purchase":
+        buttons = [[
+            InlineKeyboardButton('💵 ᴘᴀʏ ᴠɪᴀ ᴜᴘɪ ɪᴅ 💵', callback_data='upi_info')
+        ],[
+            InlineKeyboardButton('📸 ꜱᴄᴀɴ ǫʀ ᴄᴏᴅᴇ 📸', callback_data='qr_info')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.PURCHASE_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+
+    elif query.data == "upi_info":
+        buttons = [[
+            InlineKeyboardButton('📲 ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ʜᴇʀᴇ', user_id=int(767250672))
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='purchase')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.UPI_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+
+    elif query.data == "qr_info":
+        buttons = [[
+            InlineKeyboardButton('📲 ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ʜᴇʀᴇ', user_id=int(767250672))
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='purchase')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.QR_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )       
+
+    elif query.data == "seeplans":
+        btn = [[
+            InlineKeyboardButton('📲 ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ', user_id=int(767250672))
+        ],[
+            InlineKeyboardButton('❌ ᴄʟᴏꜱᴇ ❌', callback_data='close_data')
+        ]]
+        reply_markup = InlineKeyboardMarkup(btn)
+        await query.message.reply_photo(
+            photo=(SUBSCRIPTION),
+            caption=script.PREPLANS_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+
+    # Thanks to @CoderluffyTG for fixing this 
+    elif query.data == "give_trial":
+        user_id = query.from_user.id
+        has_free_trial = await db.check_trial_status(user_id)
+        if has_free_trial:
+            await query.answer("🚸 ʏᴏᴜ'ᴠᴇ ᴀʟʀᴇᴀᴅʏ ᴄʟᴀɪᴍᴇᴅ ʏᴏᴜʀ ꜰʀᴇᴇ ᴛʀɪᴀʟ ᴏɴᴄᴇ !\n\n📌 ᴄʜᴇᴄᴋᴏᴜᴛ ᴏᴜʀ ᴘʟᴀɴꜱ ʙʏ : /plan", show_alert=True)
+            return
+        else:            
+            await db.give_free_trial(user_id)
+            await query.message.reply_text(
+                text="<b>🥳 ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴꜱ\n\n🎉 ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ꜰʀᴇᴇ ᴛʀᴀɪʟ ꜰᴏʀ <u>5 ᴍɪɴᴜᴛᴇs</u> ꜰʀᴏᴍ ɴᴏᴡ !</b>",
+                quote=False,
+                disable_web_page_preview=True,                  
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("💸 ᴄʜᴇᴄᴋᴏᴜᴛ ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴꜱ 💸", callback_data='seeplans')]]))
+            return    
+
+    elif query.data == "premium_info":
+        buttons = [[
+            InlineKeyboardButton('• ꜰʀᴇᴇ ᴛʀɪᴀʟ •', callback_data='free')
+        ],[
+            InlineKeyboardButton('• ʙʀᴏɴᴢᴇ •', callback_data='broze'),
+            InlineKeyboardButton('• ꜱɪʟᴠᴇʀ •', callback_data='silver')
+        ],[
+            InlineKeyboardButton('• ɢᴏʟᴅ •', callback_data='gold'),
+            InlineKeyboardButton('• ᴘʟᴀᴛɪɴᴜᴍ •', callback_data='platinum')
+        ],[
+            InlineKeyboardButton('• ᴅɪᴀᴍᴏɴᴅ •', callback_data='diamond'),
+            InlineKeyboardButton('• ᴏᴛʜᴇʀ •', callback_data='other')
+        ],[            
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
+        ]]
+        
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.PLAN_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+    elif query.data == "free":
+        buttons = [[
+            InlineKeyboardButton('⚜️ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ɢᴇᴛ ꜰʀᴇᴇ ᴛʀɪᴀʟ', callback_data="give_trial")
+        ],[
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='other'),
+            InlineKeyboardButton('1 / 7', callback_data='pagesn1'),
+            InlineKeyboardButton('ɴᴇxᴛ ⋟', callback_data='broze')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.FREE_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
     
-    current_time = datetime.now(pytz.timezone(TIMEZONE))
-    curr_time = current_time.hour
+    elif query.data == "broze":
+        buttons = [[
+            InlineKeyboardButton('🔐 ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ', callback_data='purchase')
+        ],[
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='free'),
+            InlineKeyboardButton('2 / 7', callback_data='pagesn1'),
+            InlineKeyboardButton('ɴᴇxᴛ ⋟', callback_data='silver')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.BRONZE_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
 
-    if curr_time < 12:
-        gtxt = "ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ 👋"
-    elif curr_time < 17:
-        gtxt = "ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ 👋"
-    elif curr_time < 21:
-        gtxt = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 👋"
-    else:
-        gtxt = "ɢᴏᴏᴅ ɴɪɢʜᴛ 👋"
+    elif query.data == "silver":
+        buttons = [[
+            InlineKeyboardButton('🔐 ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ', callback_data='purchase')
+        ],[
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='broze'),
+            InlineKeyboardButton('3 / 7', callback_data='pagesn1'),
+            InlineKeyboardButton('ɴᴇxᴛ ⋟', callback_data='gold')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.SILVER_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
 
-    await query.message.edit_text(
-        text=script.START_TXT.format(query.from_user.mention, gtxt, temp.U_NAME, temp.B_NAME),
-        reply_markup=reply_markup,
-        parse_mode=enums.ParseMode.HTML
-    )
-    await query.answer(MSG_ALRT)
+    elif query.data == "gold":
+        buttons = [[
+            InlineKeyboardButton('🔐 ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ', callback_data='purchase')
+        ],[
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='silver'),
+            InlineKeyboardButton('4 / 7', callback_data='pagesn1'),
+            InlineKeyboardButton('ɴᴇxᴛ ⋟', callback_data='platinum')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.GOLD_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+
+    elif query.data == "platinum":
+        buttons = [[
+            InlineKeyboardButton('🔐 ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ', callback_data='purchase')
+        ],[
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='gold'),
+            InlineKeyboardButton('5 / 7', callback_data='pagesn1'),
+            InlineKeyboardButton('ɴᴇxᴛ ⋟', callback_data='diamond')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.PLATINUM_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+
+    
+    elif query.data == "diamond":
+        buttons = [[
+            InlineKeyboardButton('🔐 ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ', callback_data='purchase')
+        ],[
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='platinum'),
+            InlineKeyboardButton('6 / 7', callback_data='pagesn1'),
+            InlineKeyboardButton('ɴᴇxᴛ ⋟', callback_data='other')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.DIAMOND_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+
+    elif query.data == "other":
+        buttons = [[
+            InlineKeyboardButton('☎️ ᴄᴏɴᴛᴀᴄᴛ ᴏᴡɴᴇʀ ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ', user_id=int(767250672))
+        ],[
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='diamond'),
+            InlineKeyboardButton('7 / 7', callback_data='pagesn1'),
+            InlineKeyboardButton('ɴᴇxᴛ ⋟', callback_data='free')
+        ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='premium_info')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.OTHER_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+    
   
     elif query.data == "channels":
         buttons = [[
-            InlineKeyboardButton('⚜️ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ ⚜️', url='https://t.me/earaxsupport')
+            InlineKeyboardButton('⚜️ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ ⚜️', url='https://t.me/HP_MOVIES_WORLD')
         ],[
-            InlineKeyboardButton('🔍 ɢʀᴏᴜᴘ¹', url='https://t.me/earaxsupport'),
-            InlineKeyboardButton('ɢʀᴏᴜᴘ² 🔎', url='https://t.me/earaxsupport')
+            InlineKeyboardButton('🔍 ɢʀᴏᴜᴘ¹', url='https://t.me/MoviesLinkSearchBot2'),
+            InlineKeyboardButton('ɢʀᴏᴜᴘ² 🔎', url='https://t.me/MoviesLinkSearchBot3')
         ],[
-            InlineKeyboardButton('✉️ ʀᴇǫᴜᴇꜱᴛ ɢʀᴏᴜᴘ ✉️', url='https://t.me/earaxsupport')
+            InlineKeyboardButton('✉️ ʀᴇǫᴜᴇꜱᴛ ɢʀᴏᴜᴘ ✉️', url='https://t.me/HpMovieRequest')
         ],[
             InlineKeyboardButton('⇇ ʙᴀᴄᴋ', callback_data='start'),
-            InlineKeyboardButton('ꜱᴜᴘᴘᴏʀᴛ 👮', url='https://t.me/earaxsupport')
+            InlineKeyboardButton('ꜱᴜᴘᴘᴏʀᴛ 👮', url='https://t.me/HpRequestBot')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -1605,10 +1829,10 @@ if query.data == "start":
 
     elif query.data == "help":
         buttons = [[
-            InlineKeyboardButton(' ʙᴏᴛ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅꜱ ', callback_data='admic')
+            InlineKeyboardButton('• ʙᴏᴛ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅꜱ •', callback_data='admic')
         ], [
-            InlineKeyboardButton(' ᴜꜱᴇʀ ', callback_data='users'),
-            InlineKeyboardButton(' ɢʀᴏᴜᴘ ', callback_data='group')
+            InlineKeyboardButton('• ᴜꜱᴇʀ •', callback_data='users'),
+            InlineKeyboardButton('• ɢʀᴏᴜᴘ •', callback_data='group')
         ], [
             InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
         ]]
@@ -1620,14 +1844,14 @@ if query.data == "start":
         )
     elif query.data == "about":
         buttons = [[
-            InlineKeyboardButton(' ᴅɪꜱᴄʟᴀɪᴍᴇʀ ', callback_data='disclaimer'),
+            InlineKeyboardButton('‼️ ᴅɪꜱᴄʟᴀɪᴍᴇʀ ‼️', callback_data='disclaimer'),
         ], [
-            InlineKeyboardButton (' ᴄʀᴇᴅɪᴛꜱ ᴛᴏ ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀꜱ ', callback_data='credits'),
+            InlineKeyboardButton ('• ᴄʀᴇᴅɪᴛꜱ ᴛᴏ ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀꜱ •', callback_data='credits'),
         ], [
-            InlineKeyboardButton('• ᴏᴡɴᴇʀ •', user_id=int(7086720921)),
+            InlineKeyboardButton('• ᴏᴡɴᴇʀ •', user_id=int(767250672)),
             InlineKeyboardButton('• ꜱᴛᴀᴛꜱ •', callback_data='stats')
         ], [
-            InlineKeyboardButton(' ʀᴇɴᴅᴇʀɪɴɢ ꜱᴛᴀᴛᴜꜱ ',callback_data='rendr')
+            InlineKeyboardButton('🛰️ ʀᴇɴᴅᴇʀɪɴɢ ꜱᴛᴀᴛᴜꜱ ☁️',callback_data='rendr')
         ], [
             InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
         ]]
@@ -1688,6 +1912,46 @@ if query.data == "start":
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
+    elif query.data == "shortlink_info":
+            btn = [[
+            InlineKeyboardButton("1 / 3", callback_data="pagesn1"),
+            InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data="shortlink_info2")
+            ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
+            ]]
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_text(
+                text=(script.SHORTLINK_INFO),
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )   
+    elif query.data == "shortlink_info2":
+            btn = [[
+            InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data="shortlink_info"),
+            InlineKeyboardButton("2 / 3", callback_data="pagesn1"),
+            InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data="shortlink_info3")
+            ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
+            ]]
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_text(
+                text=(script.SHORTLINK_INFO2),
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )
+    elif query.data == "shortlink_info3":
+            btn = [[
+            InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data="shortlink_info2"),
+            InlineKeyboardButton("3 / 3", callback_data="pagesn1")
+            ],[
+            InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
+            ]]
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_text(
+                text=(script.SHORTLINK_INFO3),
+                reply_markup=reply_markup,
+                parse_mode=enums.ParseMode.HTML
+            )   
     
     elif query.data == "disclaimer":
             btn = [[
@@ -1771,6 +2035,12 @@ if query.data == "start":
                                          callback_data=f'setgs#max_btn#{settings["max_btn"]}#{str(grp_id)}')
                 ],
                 [
+                    InlineKeyboardButton('ꜱʜᴏʀᴛʟɪɴᴋ',
+                                         callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
+                    InlineKeyboardButton('ᴇɴᴀʙʟᴇ' if settings["is_shortlink"] else 'ᴅɪꜱᴀʙʟᴇ',
+                                         callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
+                ],
+                [
                     InlineKeyboardButton('⇋ ᴄʟᴏꜱᴇ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ ⇋', 
                                          callback_data='close_data'
                                          )
@@ -1794,7 +2064,7 @@ async def auto_filter(client, msg, spoll=False):
         if len(message.text) < 100:
             search = message.text
             m=await message.reply_sticker("CAACAgQAAxkBAAEKSxplArIUActk4ORQuFn3DHFvBqQCOgACBQMAAnJxFyVYcSIunXgGjjAE",
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f'Seaching for {search} 🔎', url=f"https://t.me/earaxsupport")]]) 
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f'Seaching for {search} 🔎', url=f"https://t.me/HP_MOVIES_WORLD")]]) 
             )
             search = search.lower()
             find = search.split(" ")
@@ -1825,7 +2095,7 @@ async def auto_filter(client, msg, spoll=False):
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
         m=await message.reply_sticker("CAACAgQAAxkBAAEKSxplArIUActk4ORQuFn3DHFvBqQCOgACBQMAAnJxFyVYcSIunXgGjjAE",
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f'Seaching for {search} 🔎', url=f"https://t.me/earaxsupport")]]) 
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f'Seaching for {search} 🔎', url=f"https://t.me/HP_MOVIES_WORLD")]]) 
         )
         settings = await get_settings(message.chat.id)
         await msg.message.delete()
@@ -2030,7 +2300,7 @@ async def advantage_spell_chok(client, msg):
         if not g_s:
             reqst_gle = query.replace(" ", "+")
             button = [[
-                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/earaxsupport")
+                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/HpMovieRequest")
             ]]
             if NO_RESULTS_MSG:
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
@@ -2067,7 +2337,7 @@ async def advantage_spell_chok(client, msg):
         if not movielist:
             reqst_gle = query.replace(" ", "+")
             button = [[
-                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/earaxsupport")
+                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/HpMovieRequest")
             ]]
             if NO_RESULTS_MSG:
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
@@ -2108,7 +2378,7 @@ async def advantage_spell_chok(client, msg):
             logger.exception(e)
             reqst_gle = mv_rqst.replace(" ", "+")
             button = [[
-                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/earaxsupport")
+                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/HpMovieRequest")
             ]]
             if NO_RESULTS_MSG:
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
@@ -2123,7 +2393,7 @@ async def advantage_spell_chok(client, msg):
         if not movies:
             reqst_gle = mv_rqst.replace(" ", "+")
             button = [[
-                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/earaxsupport")
+                       InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ", url=f"https://t.me/HpMovieRequest")
             ]]
             if NO_RESULTS_MSG:
                 await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
