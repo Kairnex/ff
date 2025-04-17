@@ -1526,7 +1526,7 @@ elif query.data == "start":
     ], [
         InlineKeyboardButton('• ᴀʙᴏᴜᴛ •', callback_data='about')
     ]]
-    
+
     reply_markup = InlineKeyboardMarkup(buttons)
     current_time = datetime.now(pytz.timezone(TIMEZONE))
     curr_time = current_time.hour
