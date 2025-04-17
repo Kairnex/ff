@@ -1547,14 +1547,6 @@ if query.data == "start":
         parse_mode=enums.ParseMode.HTML
     )
     await query.answer(MSG_ALRT)
-
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text=script.PURCHASE_TXT.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-
   
     elif query.data == "channels":
         buttons = [[
