@@ -109,7 +109,6 @@ async def start(client, message):
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
       @Client.on_message(filters.command("start") & filters.incoming)
-async def start(client, message):
     buttons = [[
         InlineKeyboardButton('Add To Group', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
     ], [
