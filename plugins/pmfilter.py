@@ -1516,7 +1516,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "sinfo":
         await query.answer(text=script.SINFO, show_alert=True)
 
-elif query.data == "start":
+if query.data == "start":
+    # your logic here
     buttons = [[
         InlineKeyboardButton('Add To Group', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
     ], [
