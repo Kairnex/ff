@@ -1517,7 +1517,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer(text=script.SINFO, show_alert=True)
 
 if query.data == "start":
-    # your logic here
     buttons = [[
         InlineKeyboardButton('Add To Group', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
     ], [
@@ -1529,6 +1528,7 @@ if query.data == "start":
     ]]
 
     reply_markup = InlineKeyboardMarkup(buttons)
+    
     current_time = datetime.now(pytz.timezone(TIMEZONE))
     curr_time = current_time.hour
 
@@ -1548,7 +1548,6 @@ if query.data == "start":
     )
     await query.answer(MSG_ALRT)
 
-       
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.PURCHASE_TXT.format(query.from_user.mention),
