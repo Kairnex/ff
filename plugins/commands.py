@@ -117,6 +117,7 @@ async def start(client, message):
                     InlineKeyboardButton('Commands', callback_data='help'),
                     InlineKeyboardButton('About', callback_data='about')
                 ]]
+        
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour        
