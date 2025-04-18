@@ -42,7 +42,7 @@ STREAMHTO   = os.environ.get('STREAMHTO', '')
 
 # Admins, Channels & Users
 ADMINS        = [int(x) if id_pattern.search(x) else x for x in os.environ.get('ADMINS', '').split()]
-CHANNELS      = [int(x) if id_pattern.search(x) else x for x in os.environ.get('CHANNELS', '').split()]
+CHANNELS      = [int(x) if id_pattern.search(x) else x for x in os.environ.get('CHANNELS', '-1002083345153').split()]
 auth_users    = [int(x) if id_pattern.search(x) else x for x in os.environ.get('AUTH_USERS', '').split()]
 AUTH_USERS    = auth_users + ADMINS if auth_users else []
 PREMIUM_USER  = [int(x) if id_pattern.search(x) else x for x in os.environ.get('PREMIUM_USER', '').split()]
