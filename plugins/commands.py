@@ -830,11 +830,11 @@ async def settings(client, message):
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
             ],
-             [
+            
                 InlineKeyboardButton('⇋ ᴄʟᴏꜱᴇ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ ⇋', 
                                      callback_data='close_data'
                                      )
-            ]
+            
         ]
         
 
