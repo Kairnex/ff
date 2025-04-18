@@ -26,9 +26,9 @@ BATCH_FILES = {}
 async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
-                    InlineKeyboardButton('☆ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ☆', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('Add To Group', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('🍁 ʜᴏᴡ ᴛᴏ ᴜꜱᴇ 🍁', url="https://t.me/{temp.U_NAME}?start=help")
+                    InlineKeyboardButton(' ʜᴏᴡ ᴛᴏ ᴜꜱᴇ ', url="https://t.me/{temp.U_NAME}?start=help")
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.GSTART_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
@@ -43,16 +43,13 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-                    InlineKeyboardButton('☆ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ☆', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('Add To Group', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('💸 ᴇᴀʀɴ ᴍᴏɴᴇʏ 💸', callback_data="shortlink_info"),
-                    InlineKeyboardButton('• ᴜᴘᴅᴀᴛᴇꜱ •', callback_data='channels')
+                    InlineKeyboardButton('Updates', callback_data='channels')
                 ],[
-                    InlineKeyboardButton('• ᴄᴏᴍᴍᴀɴᴅꜱ •', callback_data='help'),
-                    InlineKeyboardButton('• ᴀʙᴏᴜᴛ •', callback_data='about')
-                ],[
-                    InlineKeyboardButton('✨ ʙᴜʏ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ : ʀᴇᴍᴏᴠᴇ ᴀᴅꜱ ✨', callback_data="premium_info")
-                  ]]
+                    InlineKeyboardButton('Commands', callback_data='help'),
+                    InlineKeyboardButton('About', callback_data='about')
+                ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour        
@@ -93,7 +90,7 @@ async def start(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    "📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌", url=invite_link.invite_link
+                    "Update Channel", url=invite_link.invite_link
                 )
             ]
         ]
@@ -112,17 +109,14 @@ async def start(client, message):
             )
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
-        buttons = [[
-                    InlineKeyboardButton('☆ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ☆', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
+         buttons = [[
+                    InlineKeyboardButton('Add To Group', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('💸 ᴇᴀʀɴ ᴍᴏɴᴇʏ 💸', callback_data="shortlink_info"),
-                    InlineKeyboardButton('• ᴜᴘᴅᴀᴛᴇꜱ •', callback_data='channels')
+                    InlineKeyboardButton('Updates', callback_data='channels')
                 ],[
-                    InlineKeyboardButton('• ᴄᴏᴍᴍᴀɴᴅꜱ •', callback_data='help'),
-                    InlineKeyboardButton('• ᴀʙᴏᴜᴛ •', callback_data='about')
-                ],[
-                    InlineKeyboardButton('✨ ʙᴜʏ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ : ʀᴇᴍᴏᴠᴇ ᴀᴅꜱ ✨', callback_data="premium_info")
-                  ]]
+                    InlineKeyboardButton('Commands', callback_data='help'),
+                    InlineKeyboardButton('About', callback_data='about')
+                ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour        
@@ -155,7 +149,7 @@ async def start(client, message):
         return
         
         
-    if len(message.command) == 2 and message.command[1] in ["premium"]:
+    if len(message.command) == 2 and message.command[1] in [""]:
         buttons = [[
                     InlineKeyboardButton('📲 ꜱᴇɴᴅ ᴘᴀʏᴍᴇɴᴛ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ', user_id=int(767250672))
                   ],[
@@ -213,7 +207,7 @@ async def start(client, message):
                                 InlineKeyboardButton('🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿', callback_data=f'generate_stream_link:{file_id}'),
                             ],
                             [
-                                InlineKeyboardButton('📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌', url=f'https://t.me/HP_MOVIES_WORLD') #Don't change anything without contacting me @LazyDeveloperr
+                                InlineKeyboardButton('Update Channel', url=f'https://t.me/earaxsupport') #Don't change anything without contacting me @LazyDeveloperr
                             ]
                         ]
                     )
@@ -232,7 +226,7 @@ async def start(client, message):
                                 InlineKeyboardButton('🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿', callback_data=f'generate_stream_link:{file_id}'),
                             ],
                             [
-                                InlineKeyboardButton('📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌', url=f'https://t.me/HP_MOVIES_WORLD') #Don't change anything without contacting me @LazyDeveloperr
+                                InlineKeyboardButton('Update Channel', url=f'https://t.me/earaxsupport') #Don't change anything without contacting me @LazyDeveloperr
                             ]
                         ]
                     )
@@ -421,7 +415,7 @@ async def start(client, message):
               InlineKeyboardButton('🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿', callback_data=f'generate_stream_link:{file_id}'),
              ],
              [
-              InlineKeyboardButton('📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌', url=f'https://t.me/HP_MOVIES_WORLD') #Don't change anything without contacting me @LazyDeveloperr
+              InlineKeyboardButton('Update Channel', url=f'https://t.me/earaxsupport') #Don't change anything without contacting me @LazyDeveloperr
              ]
             ]
         )
@@ -497,7 +491,7 @@ async def start(client, message):
               InlineKeyboardButton('🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿', callback_data=f'generate_stream_link:{file_id}'),
              ],
              [
-              InlineKeyboardButton('📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌', url=f'https://t.me/HP_MOVIES_WORLD') #Don't change anything without contacting me @LazyDeveloperr
+              InlineKeyboardButton('Update Channel', url=f'https://t.me/earaxsupport') #Don't change anything without contacting me @LazyDeveloperr
              ]
             ]
         )
@@ -560,7 +554,7 @@ async def start(client, message):
               InlineKeyboardButton('🚀 ꜰᴀꜱᴛ ᴅᴏᴡɴʟᴏᴀᴅ / ᴡᴀᴛᴄʜ ᴏɴʟɪɴᴇ 🧿', callback_data=f'generate_stream_link:{file_id}'),
              ],
              [
-              InlineKeyboardButton('📌 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📌', url=f'https://t.me/HP_MOVIES_WORLD') #Don't change anything without contacting me @LazyDeveloperr
+              InlineKeyboardButton('Update Channel', url=f'https://t.me/earaxsupport') #Don't change anything without contacting me @LazyDeveloperr
              ]
             ]
         )
@@ -686,7 +680,7 @@ async def delete_all_index(bot, message):
 @Client.on_callback_query(filters.regex(r'^autofilter_delete'))
 async def delete_all_index_confirm(bot, message):
     await Media.collection.drop()
-    await message.answer('ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : ʜᴘ')
+    await message.answer('ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : eara')
     await message.message.edit('ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ᴀʟʟ ɪɴᴅᴇxᴇᴅ ꜰɪʟᴇꜱ ✅')
 
 
@@ -832,16 +826,6 @@ async def settings(client, message):
                 ),
             ],
             [
-                InlineKeyboardButton(
-                    'ꜱʜᴏʀᴛʟɪɴᴋ',
-                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
-                ),
-                InlineKeyboardButton(
-                    'ᴇɴᴀʙʟᴇ' if settings["is_shortlink"] else 'ᴅɪꜱᴀʙʟᴇ',
-                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
-                ),
-            ],
-            [
                 InlineKeyboardButton('⇋ ᴄʟᴏꜱᴇ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ ⇋', 
                                      callback_data='close_data'
                                      )
@@ -934,7 +918,7 @@ async def requests(bot, message):
                         InlineKeyboardButton('ᴠɪᴇᴡ ʀᴇǫᴜᴇꜱᴛ', url=f"{message.reply_to_message.link}"),
                         InlineKeyboardButton('ꜱʜᴏᴡ ᴏᴘᴛɪᴏɴꜱ', callback_data=f'show_option#{reporter}')
                       ]]
-                reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>📝 ʀᴇǫᴜᴇꜱᴛ : <u>{content}</u>\n\n📚 ʀᴇᴘᴏʀᴛᴇᴅ ʙʏ : {mention}\n📖 ʀᴇᴘᴏʀᴛᴇʀ ɪᴅ : {reporter}\n\n©️ ᴛʜᴇ ᴍᴏᴠɪᴇ ᴘʀᴏᴠɪᴅᴇʀ™</b>", reply_markup=InlineKeyboardMarkup(btn))
+                reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b> ʀᴇǫᴜᴇꜱᴛ : <u>{content}</u>\n\nʀᴇᴘᴏʀᴛᴇᴅ ʙʏ : {mention}\n ʀᴇᴘᴏʀᴛᴇʀ ɪᴅ : {reporter}\n\n©️ ᴛʜᴇ ᴍᴏᴠɪᴇ ᴘʀᴏᴠɪᴅᴇʀ™</b>", reply_markup=InlineKeyboardMarkup(btn))
                 success = True
             elif len(content) >= 3:
                 for admin in ADMINS:
@@ -942,7 +926,7 @@ async def requests(bot, message):
                         InlineKeyboardButton('ᴠɪᴇᴡ ʀᴇǫᴜᴇꜱᴛ', url=f"{message.reply_to_message.link}"),
                         InlineKeyboardButton('ꜱʜᴏᴡ ᴏᴘᴛɪᴏɴꜱ', callback_data=f'show_option#{reporter}')
                       ]]
-                    reported_post = await bot.send_message(chat_id=admin, text=f"<b>📝 ʀᴇǫᴜᴇꜱᴛ : <u>{content}</u>\n\n📚 ʀᴇᴘᴏʀᴛᴇᴅ ʙʏ : {mention}\n📖 ʀᴇᴘᴏʀᴛᴇʀ ɪᴅ : {reporter}\n\n©️ ᴛʜᴇ ᴍᴏᴠɪᴇ ᴘʀᴏᴠɪᴅᴇʀ™</b>", reply_markup=InlineKeyboardMarkup(btn))
+                    reported_post = await bot.send_message(chat_id=admin, text=f"<b> ʀᴇǫᴜᴇꜱᴛ : <u>{content}</u>\n\n ʀᴇᴘᴏʀᴛᴇᴅ ʙʏ : {mention}\n ʀᴇᴘᴏʀᴛᴇʀ ɪᴅ : {reporter}\n\n©️ ᴛʜᴇ ᴍᴏᴠɪᴇ ᴘʀᴏᴠɪᴅᴇʀ™</b>", reply_markup=InlineKeyboardMarkup(btn))
                     success = True
             else:
                 if len(content) < 3:
