@@ -1523,7 +1523,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ],[
                     InlineKeyboardButton('Commands', callback_data='help'),
                     InlineKeyboardButton('About', callback_data='about')
-                ]]
+                ]
+                    ]     
         
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
