@@ -42,17 +42,6 @@ import requests
 import string
 import tracemalloc
 
-@Client.on_callback_query(...)
-async def cb_handler(...):
-    ...
-@Client.on_message(filters.private & filters.outgoing & filters.media)
-async def auto_delete_bot_media(bot, message):
-    await asyncio.sleep(60)
-    try:
-        await message.delete()
-    except Exception as e:
-        logger.error(f"Failed to auto-delete bot media: {e}")
-
 # Enable tracemalloc
 tracemalloc.start()
 
