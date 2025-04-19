@@ -105,12 +105,24 @@ async def pm_text(bot, message):
     content = message.text
     user = message.from_user.first_name
     user_id = message.from_user.id
-    if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
-    if user_id in ADMINS: return # ignore admins
-    await message.reply_text(
-         text=f"<b>ʜᴇʏ {user} 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇs ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇsᴛ ɪᴛ ɪɴ ᴏᴜʀ ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ 👇</b>",   
-         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ", url=f"https://t.me/earaxsupport")]])
+    if content.startswith("/") or content.startswith("#"):
+        return  # ignore commands and hashtags
+    if user_id in ADMINS:
+        return  # ignore admins
+
+    reply = await message.reply_text(
+         text=f"<b>ʜᴇʏ {user} 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇꜱ ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇꜱᴛ ɪᴛ ɪɴ ᴏᴜʀ ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ 👇</b>",
+         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ʀᴇǫᴜᴇꜱᴛ ʜᴇʀᴇ ", url=f"https://t.me/earaxsupport")]])
     )
+
+    # Optional: delete both messages after 60 seconds
+    await asyncio.sleep(60)
+    try:
+        await message.delete()
+        await reply.delete()
+    except Exception as e:
+        logger.error(f"Failed to delete messages in DM: {e}")
+
     await bot.send_message(
         chat_id=LOG_CHANNEL,
         text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\nNᴀᴍᴇ : {user}\n\nID : {user_id}\n\nMᴇssᴀɢᴇ : {content}</b>"
@@ -2226,13 +2238,6 @@ async def advantage_spell_chok(client, msg):
             text=script.CUDNT_FND.format(mv_rqst),
             reply_markup=InlineKeyboardMarkup(btn)
         )
-        def handle_auto_video(message):
-    send_video_auto_delete(
-        chat_id=message.chat.id,
-        video_path='your_video.mp4',  # Local path to the video
-        caption="This video will self-destruct in 7 seconds!",
-        delay=7
-    )
     try:
             if settings['auto_delete']:
                 await asyncio.sleep(60)
