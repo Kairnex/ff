@@ -2226,7 +2226,14 @@ async def advantage_spell_chok(client, msg):
             text=script.CUDNT_FND.format(mv_rqst),
             reply_markup=InlineKeyboardMarkup(btn)
         )
-        try:
+        def handle_auto_video(message):
+    send_video_auto_delete(
+        chat_id=message.chat.id,
+        video_path='your_video.mp4',  # Local path to the video
+        caption="This video will self-destruct in 7 seconds!",
+        delay=7
+    )
+    try:
             if settings['auto_delete']:
                 await asyncio.sleep(60)
                 await spell_check_del.delete()
